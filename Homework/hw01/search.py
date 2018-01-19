@@ -1,5 +1,5 @@
-t = "GTTTCTAACCTTATTACTACGTAACGAGGTCGTCATGCAATGCTGACCATGCATGCCTGACTCTGACGCTA"
-p = "ACGTAACG"
+t = ((open(input(""), "r")).readline()).strip()
+p = ((open(input(""), "r")).readline()).strip()
 
 n = len(t)
 m = len(p)
