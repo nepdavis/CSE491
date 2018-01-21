@@ -66,7 +66,24 @@ def kmp(t, p):
             total += 1
 
             k = pi[k]
+            
+    pi = [str(i) for i in pi]
+
+    result = "Pi is: " + " ".join(pi) + "\n" + "Total: " + str(total)
+
+    return result
 
 
-t_ = ((open(input(""), "r")).readline()).strip()
-p_ = ((open(input(""), "r")).readline()).strip()
+def main():
+
+    t_ = ((open(input(""), "r")).readline()).strip()
+    p_ = ((open(input(""), "r")).readline()).strip()
+
+    out = kmp(t_, p_)
+
+    print(out)
+
+
+if __name__ == "__search__":
+
+    main()
