@@ -25,6 +25,21 @@ def naive(t, p):
     print("Total:", total, "", " ".join(positions))
 
 
+def pi_array(pi, m, p):
+
+    pi[0] = 0
+
+    k = 0
+
+    for i in range(m):
+
+        while k > 0 and p[k] != p[i]:
+
+            k = pi[k - 1]
+
+        pi[i] = k + 1
+
+
 def kmp(t, p):
 
     n = len(t)
@@ -32,13 +47,15 @@ def kmp(t, p):
 
     total = 0
 
-    pi = [0 for _ in range(n)]
+    pi = [0 for _ in range(m)]
 
     k = 0
 
+    pi_array(pi, m, p)
+
     for i in range(n):
 
-        while k >= 0 and p[k + 1] != t[i]:
+        while k >= 0 and p[k] != t[i]:
 
             k = pi[k]
 
