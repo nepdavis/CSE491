@@ -22,7 +22,9 @@ def naive(t, p):
             total += 1
             positions.append(str(i))
 
-    print("Total:", total, "", " ".join(positions))
+    result = "Total: " + str(total) + "  " + " ".join(positions)
+
+    return result
 
 
 def pi_array(pi, m, p):
@@ -66,7 +68,7 @@ def kmp(t, p):
             total += 1
 
             k = pi[k]
-            
+
     pi = [str(i) for i in pi]
 
     result = "Pi is: " + " ".join(pi) + "\n" + "Total: " + str(total)
@@ -76,14 +78,15 @@ def kmp(t, p):
 
 def main():
 
-    t_ = ((open(input(""), "r")).readline()).strip()
-    p_ = ((open(input(""), "r")).readline()).strip()
+    t_ = ((open("T1.txt", "r")).readline()).strip()
+    p_ = ((open("P1.txt", "r")).readline()).strip()
 
-    out = kmp(t_, p_)
+    out = naive(t_, p_)
+    # out = kmp(t_, p_)
 
     print(out)
 
 
-if __name__ == "__search__":
+if __name__ == "__main__":
 
     main()
