@@ -61,27 +61,31 @@ def kmp(t, p):
 
     k = 0
 
-    print(pi)
-
     pi_array(pi, m, p)
-
-    print(pi)
 
     for i in range(n):
 
         while k >= 0 and p[k] != t[i]:
 
-            k = pi[k]
+            if k == 0:
 
-        k += 1
+                break
+
+            else:
+
+                k = pi[k - 1]
+
+        if p[k] == t[i]:
+
+            k += 1
 
         if k == m:
 
             total += 1
 
-            positions.append(str(i))
-
             k = pi[k - 1]
+
+            positions.append(str(i - k))
 
     pi = [str(i) for i in pi]
 
@@ -96,11 +100,11 @@ def main():
     t_ = ((open("T1.txt", "r")).readline()).strip()
     p_ = ((open("P1.txt", "r")).readline()).strip()
 
-    # out = naive(t_, p_)
-    out = kmp(t_, p_)
+    out = naive(t_, p_)
+    out_ = kmp(t_, p_)
 
     print(out)
-
+    print(out_)
 
 if __name__ == "__main__":
 
