@@ -74,30 +74,23 @@ def kmp(t, p):
 
 def main():
 
-    t_ = ((open("T3.txt", "r")).readline()).strip()
-    p_ = ((open("P3.txt", "r")).readline()).strip()
+    # Gets file inputs (both on same line)
+    files = input().split()
 
-    out_ = kmp(t_, p_)
+    # Opens the text file and pattern file (text file comes first)
+    t_ = (open(files[0]).readline()).strip()
+    p_ = (open(files[1]).readline()).strip()
 
-    print(out_)
+    prev_time = time.time()
 
-    # # Gets file inputs (both on same line)
-    # files = input().split()
-    #
-    # # Opens the text file and pattern file (text file comes first)
-    # t_ = (open(files[0]).readline()).strip()
-    # p_ = (open(files[1]).readline()).strip()
-    #
-    # prev_time = time.time()
-    #
-    # # calls kmp() method and stores in out
-    # out = kmp(t_, p_)
-    #
-    # new_time = time.time()
-    #
-    # # prints the kmp() return
-    # print(out)
-    # print("Total time elapsed:", round(new_time - prev_time, 10))
+    # calls kmp() method and stores in out
+    out = kmp(t_, p_)
+
+    new_time = time.time()
+
+    # prints the kmp() return
+    print(out)
+    print("Total time elapsed:", round(new_time - prev_time, 10))
 
 if __name__ == "__main__":
 
