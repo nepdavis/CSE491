@@ -29,15 +29,27 @@ def naive(t, p):
 
 def main():
 
-    t_ = ((open("T1.txt", "r")).readline()).strip()
-    p_ = ((open("P1.txt", "r")).readline()).strip()
+    """
+    This asks for an input of a text and pattern file/path and reads those
+    files. It then calls the naive sorting algorithm and prints the return
+    :return: 
+    """
 
+    # Gets file inputs (both on same line)
+    files = input().split()
+
+    # Opens the text file and pattern file (text file comes first)
+    t_ = (open(files[0]).readline()).strip()
+    p_ = (open(files[1]).readline()).strip()
+
+    # calls naive() method and stores in out
     out = naive(t_, p_)
 
+    # prints the naive() return
     print(out)
 
 
 if __name__ == "__main__":
 
+    # run main program
     main()
-
