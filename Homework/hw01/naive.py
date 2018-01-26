@@ -1,29 +1,51 @@
 def naive(t, p):
 
+    """
+    Naive pattern matching algorithm that matches substring of T with P
+    character by character from index 0 to n - m + 1
+    :param t: a text string
+    :param p: a pattern string
+    :return: string result with total number of matches and their locations
+    """
+    
+    # store lengths of t and p in n and m, respectively
     n = len(t)
     m = len(p)
 
+    # init total matches at 0
     total = 0
 
+    # init empty list keeping track of positions for matches
     positions = []
 
+    # for each char in range of string t minus length of pattern plus 1
     for i in range(n - m + 1):
 
+        # new string to compare is substring of t starting at i to i + m
         new = t[i:i+m]
 
+        # init counter at 0
         j = 0
 
+        # while j within m and new substring char equal to pattern char at jth
         while (j < m) and (new[j] == p[j]):
 
+            # increment j
             j += 1
 
+        # if, after while loop, j equal to m
         if j == m:
 
+            # substring new must equal pattern, increment total by 1
             total += 1
+
+            # add location i to positions as a string (for printing)
             positions.append(str(i))
 
+    # formatted string result for printing
     result = "Total: " + str(total) + "  " + " ".join(positions)
 
+    # return formatted string
     return result
 
 
