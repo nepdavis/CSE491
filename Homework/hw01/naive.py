@@ -1,3 +1,6 @@
+import time
+
+
 def naive(t, p):
 
     """
@@ -7,7 +10,7 @@ def naive(t, p):
     :param p: a pattern string
     :return: string result with total number of matches and their locations
     """
-    
+
     # store lengths of t and p in n and m, respectively
     n = len(t)
     m = len(p)
@@ -64,11 +67,16 @@ def main():
     t_ = (open(files[0]).readline()).strip()
     p_ = (open(files[1]).readline()).strip()
 
+    prev_time = time.time()
+
     # calls naive() method and stores in out
     out = naive(t_, p_)
 
+    new_time = time.time()
+
     # prints the naive() return
     print(out)
+    print("Total time elapsed:", round(new_time - prev_time, 10))
 
 
 if __name__ == "__main__":
