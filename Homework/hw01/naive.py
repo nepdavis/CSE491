@@ -64,8 +64,8 @@ def main():
     files = input().split()
 
     # Opens the text file and pattern file (text file comes first)
-    t_ = (open(files[0]).readline()).strip()
-    p_ = (open(files[1]).readline()).strip()
+    p_ = (open(files[0]).readline()).strip()
+    t_ = (open(files[1]).readline()).strip()
 
     prev_time = time.time()
 
