@@ -1,35 +1,45 @@
 import time
 
 
+def next_p(pattern):
+
+    alphabet = {"A": "C", "C": "G", "G": "T", "T": "TA"}
+
+    return pattern[:-1] + alphabet[pattern[-1]]
+
+
 def binary_search(array, pattern):
 
     left = 0
-    right = len(array)
+    c = len(array) // 2
+    right = len(array) - 1
 
     while array[left] < pattern < array[right]:
 
-        c = (left + right) // 2
-
         if pattern < array[c]:
 
-            if c == left + 1:
+            if c == (left + 1):
 
                 return c
 
-            right = c + 0
+            right = c
+            c = (left + right) // 2
             continue
 
-        elif pattern > array[c]:
+        else:
 
-            if c == right - 1:
+            if c == (right - 1):
 
-                return c
+                return right
 
-            left = c + 0
+            left = c
+            c = (left + right) // 2
             continue
 
 
 def suffix_array(text):
+
+    text += "$"
 
     array = [text[i:] for i in range(len(text))]
 
@@ -50,10 +60,16 @@ def main():
 
     s_array = suffix_array(text)
 
+    print(s_array)
+
     print("Suffix array build time was {:.6f} seconds".
           format(time.time() - pre_build_time))
 
-    print(s_array)
+    first_pos = binary_search(s_array, pattern)
+
+    second_pos = binary_search(s_array, next_p(pattern))
+
+    print(first_pos, second_pos)
 
 
 if __name__ == "__main__":
