@@ -1,22 +1,31 @@
 import time
 
 
+def quick_sort(array):
+
+    return array
+
+
 def next_p(pattern):
 
-    alphabet = {"A": "C", "C": "G", "G": "T", "T": "TA"}
+    alphabet = {"A": "C", "C": "G", "G": "T"}
+
+    if pattern[-1] == "T":
+
+        return "T"
 
     return pattern[:-1] + alphabet[pattern[-1]]
 
 
-def binary_search(array, pattern):
+def binary_search(t, array, pattern):
 
     left = 0
     c = len(array) // 2
     right = len(array) - 1
 
-    while array[left] < pattern < array[right]:
+    while t[array[left]:] < pattern < t[array[right]:]:
 
-        if pattern < array[c]:
+        if pattern < t[array[c]:]:
 
             if c == (left + 1):
 
@@ -39,11 +48,9 @@ def binary_search(array, pattern):
 
 def suffix_array(text):
 
-    text += "$"
+    array = [(text[i:], i) for i in range(len(text))]
 
-    array = [text[i:] for i in range(len(text))]
-
-    array = sorted(array)
+    array = [i[1] for i in sorted(array)]
 
     return array
 
@@ -54,7 +61,7 @@ def main():
 
     # Opens the text file and pattern file (text file comes first)
     pattern = (open(files[0]).readline()).strip()
-    text = (open(files[1]).readline()).strip()
+    text = (open(files[1]).readline()).strip() + "$"
 
     pre_build_time = time.time()
 
@@ -62,14 +69,20 @@ def main():
 
     print(s_array)
 
-    print("Suffix array build time was {:.6f} seconds".
+    print("End of suffix array building. The time is {:.6f}".
           format(time.time() - pre_build_time))
 
-    first_pos = binary_search(s_array, pattern)
+    first_pos = binary_search(text, s_array, pattern)
 
-    second_pos = binary_search(s_array, next_p(pattern))
+    print(next_p(pattern))
+
+    second_pos = binary_search(text, s_array, next_p(pattern))
 
     print(first_pos, second_pos)
+
+    match_pos = sorted([str(s_array[i]) for i in range(first_pos, second_pos)])
+
+    print("Matches found at positions:", " ".join(match_pos))
 
 
 if __name__ == "__main__":
