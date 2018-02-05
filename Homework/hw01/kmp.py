@@ -144,6 +144,7 @@ def main():
     # prints time elapsed from algorithm run
     print("Total time elapsed:", round(new_time - prev_time, 10))
 
+
 if __name__ == "__main__":
 
     main()
