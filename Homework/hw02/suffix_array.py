@@ -1,3 +1,4 @@
+import sys
 import time
 
 
@@ -73,7 +74,7 @@ def suffix_array(text):
 
 def main():
 
-    files = input().split()
+    files = sys.argv[1:]
 
     # Opens the text file and pattern file (text file comes first)
     pattern = (open(files[0]).readline()).strip()
