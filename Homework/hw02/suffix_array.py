@@ -1,18 +1,34 @@
 import time
 
 
-def quick_sort(array):
+def quick_sort(array, l = 0):
 
-    return array
+    if len(array) <= 1:
+
+        return array
+
+    same = [s for s in array if len(s[0]) == l]
+
+    pivot = array[0][0]
+
+    less = [s for s in array if s[0][l] < pivot[l]]
+    equal = [s for s in array if s[0][l] == pivot[l]]
+    greater = [s for s in array if s[0][l] > pivot[l]]
+
+    less = quick_sort(less, l)
+    equal = quick_sort(equal, l + 1)
+    greater = quick_sort(greater, l)
+
+    return same + less + equal + greater
 
 
 def next_p(pattern):
 
-    alphabet = {"A": "C", "C": "G", "G": "T"}
+    alphabet = {"A": "C", "C": "G", "G": "T", "T": "T"}
 
     if pattern[-1] == "T":
 
-        return "T"
+        return alphabet[pattern[0]]
 
     return pattern[:-1] + alphabet[pattern[-1]]
 
@@ -68,6 +84,13 @@ def main():
     s_array = suffix_array(text)
 
     print(s_array)
+    print()
+
+    s_array = quick_sort([(text[i:], i) for i in range(len(text))])
+
+    s_array = [i[1] for i in s_array]
+
+    print(s_array)
 
     print("End of suffix array building. The time is {:.6f}".
           format(time.time() - pre_build_time))
@@ -80,9 +103,9 @@ def main():
 
     print(first_pos, second_pos)
 
-    match_pos = sorted([str(s_array[i]) for i in range(first_pos, second_pos)])
+    match_pos = sorted([s_array[i] for i in range(first_pos, second_pos)])
 
-    print("Matches found at positions:", " ".join(match_pos))
+    print("Matches found at positions:", " ".join(str(i) for i in match_pos))
 
 
 if __name__ == "__main__":
