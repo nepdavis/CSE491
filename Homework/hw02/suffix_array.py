@@ -66,7 +66,7 @@ def suffix_array(text):
 
     array = [(text[i:], i) for i in range(len(text))]
 
-    array = [i[1] for i in sorted(array)]
+    array = [i[1] for i in quick_sort(array)]
 
     return array
 
@@ -83,29 +83,16 @@ def main():
 
     s_array = suffix_array(text)
 
-    print(s_array)
-    print()
-
-    s_array = quick_sort([(text[i:], i) for i in range(len(text))])
-
-    s_array = [i[1] for i in s_array]
-
-    print(s_array)
-
     print("End of suffix array building. The time is {:.6f}".
           format(time.time() - pre_build_time))
 
     first_pos = binary_search(text, s_array, pattern)
 
-    print(next_p(pattern))
-
     second_pos = binary_search(text, s_array, next_p(pattern))
-
-    print(first_pos, second_pos)
 
     match_pos = sorted([s_array[i] for i in range(first_pos, second_pos)])
 
-    print("Matches found at positions:", " ".join(str(i) for i in match_pos))
+    print("Matches found at positions:", "  ".join(str(i) for i in match_pos))
 
 
 if __name__ == "__main__":
