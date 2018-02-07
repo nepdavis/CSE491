@@ -51,6 +51,12 @@ def next_p(pattern):
     # if last character equal to last character in alphabet
     if pattern[-1] == "T":
 
+        # if pattern also starts with T
+        if pattern[0] == "T":
+
+            # then return current pattern as there are none after it in text
+            return pattern
+
         # return next character by itself
         return alphabet[pattern[0]]
 
