@@ -1,4 +1,4 @@
-This program should be run with Python 3.xx
+This program should be run with Python 3.xx -- dependencies are on sys and time modules.
 
 
 To run, use the following command:
