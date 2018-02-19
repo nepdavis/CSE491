@@ -1,9 +1,29 @@
 import time
 
 
-def bwt():
+def bwt(t, suffix_array):
 
-    pass
+    """
+    The function takes a text array and a sorted suffix array and returns the
+    BW transformed array of suffix permutations
+    :param t: text
+    :param suffix_array: sorted suffix array of t
+    :return: bw object of permutations
+    """
+
+    bw = []
+
+    for i in suffix_array:
+
+        if i == 0:
+
+            bw.append("$")
+
+        else:
+
+            bw.append(t[i - 1])
+
+    return bw
 
 
 def main():
