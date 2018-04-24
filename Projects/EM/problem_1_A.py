@@ -37,7 +37,7 @@ def parse_file(filename):
     return rolls_dice_a, rolls_dice_b, dice_dict_count
 
 
-def em(first_rolls, second_rolls, dice_rolls):
+def mle(first_rolls, second_rolls, dice_rolls):
 
     """
 

@@ -31,7 +31,7 @@ def probability(series, params):
     return prob * params["die"]
 
 
-def em(filename, params_a, params_b):
+def bayes(filename, params_a, params_b):
 
     roll_results = []
 
