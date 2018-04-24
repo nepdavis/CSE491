@@ -74,7 +74,7 @@ def main():
 
     params_a, params_b = parse_params(file_param)
 
-    results = em(file_counts, params_a, params_b)
+    results = bayes(file_counts, params_a, params_b)
 
     output(results)
 

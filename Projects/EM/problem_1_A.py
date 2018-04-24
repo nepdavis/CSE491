@@ -112,7 +112,8 @@ def main():
 
     rolls_a, rolls_b, die_counts = parse_file(filename = file)
 
-    first_params, second_params, dice_params = em(rolls_a, rolls_b, die_counts)
+    first_params, second_params, dice_params = mle(rolls_a, rolls_b,
+                                                   die_counts)
 
     output(first_params, second_params, dice_params)
 
