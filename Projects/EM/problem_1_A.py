@@ -68,8 +68,6 @@ def mle(first_rolls, second_rolls, dice_rolls):
 
         dice_probs.append(float(count) / sum(dice_rolls.values()))
 
-    print(first_probs, second_probs, dice_probs)
-
     return first_probs, second_probs, dice_probs
 
 
@@ -103,11 +101,6 @@ def output(first_params, second_params, dice_params):
 
     # fourth line is probs for second die
     fourth_line = "B:  " + dice_q[1] + "   " + " ".join(sec_p)
-
-    print(first_line)
-    print(second_line)
-    print(third_line)
-    print(fourth_line)
 
     out = first_line + "\n" + second_line + "\n" + third_line + "\n" +\
           fourth_line

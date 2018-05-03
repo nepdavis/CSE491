@@ -74,8 +74,6 @@ def output(results):
                                                                       line[0],
                                                                       line[1])
 
-        print(string)
-
         out += (string + "\n")
 
     text_file.write(out)

@@ -14,6 +14,8 @@ def parse_file(filename):
 
             all_series.append(line)
 
+    f.close()
+
     return all_series
 
 
@@ -22,68 +24,57 @@ def em(data):
     prob_a = .5
     prob_b = .5
 
-    # params_a = np.random.dirichlet(np.ones(6), size=1)[0]
-    # params_b = np.random.dirichlet(np.ones(6), size=1)[0]
-
     params_a = list(np.random.uniform(size = 6))
     params_b = list(np.random.uniform(size = 6))
 
     max_iter = 30
+    threshold = 0.01
+    ll_old = 0
 
     for i in range(max_iter):
 
-        # all_a = []
-        # all_b = []
+        all_a = []
+        all_b = []
 
-        for series in data:
+        probs_a = []
+        probs_b = []
 
-            counts = np.array([series.count(i) for i in range(1, 7)])
+        ll_new = 0
 
-            # print(counts)
-            #
-            # log_lik_a = sum([np.log(params_a[i - 1]) for i in series])
-            # log_lik_b = sum([np.log(params_b[i - 1]) for i in series])
-            #
-            # print(log_lik_a)
-            # print(log_lik_b)
-            #
-            # combined = np.exp(log_lik_a) + np.exp(log_lik_b)
-            #
-            # prob_a = np.exp(log_lik_a) / combined
-            # prob_b = np.exp(log_lik_b) / combined
-            #
-            # print(combined)
-            # print(prob_a)
-            # print(prob_b)
-            #
-            # temp_params_a = [sum([np.log(params_a[i])] * counts[i]) for i in range(6)]
-            # temp_params_b = [sum([np.log(params_b[i])] * counts[i]) for i in range(6)]
-            #
-            # params_a = np.array(np.exp(temp_params_a)) / prob_a
-            # params_b = np.array(np.exp(temp_params_b)) / prob_b
+        for line in data:
 
-            lik_a = sum([params_a[i - 1] for i in series])
-            lik_b = sum([params_b[i - 1] for i in series])
+            counts = np.array([line.count(i) for i in range(1, 7)])
 
-            combined = lik_a + lik_b
+            ll_A = np.sum([counts * np.log(params_a)])
+            ll_B = np.sum([counts * np.log(params_b)])
 
-            print(lik_a, lik_b, combined)
+            denom = np.exp(ll_A) + np.exp(ll_B)
+            w_A = np.exp(ll_A) / denom
+            w_B = np.exp(ll_B) / denom
 
-            prob_a = lik_a / combined
-            prob_b = lik_b / combined
+            probs_a.append(w_A)
+            probs_b.append(w_B)
 
-            temp_params_a = [sum([params_a[i]] * counts[i]) for i in
-                             range(6)]
+            all_a.append(np.dot(w_A, counts))
+            all_b.append(np.dot(w_B, counts))
 
-            temp_params_b = [sum([params_b[i]] * counts[i]) for i in range(6)]
+            # update complete log likelihood
+            ll_new += w_A * ll_A + w_B * ll_B
 
-            params_a = np.array(temp_params_a) / lik_a
-            params_b = np.array(temp_params_b) / lik_b
+        # M-step: update values for parameters given current distribution
+        # [EQN 2]
+        params_a = np.sum(all_a, 0) / np.sum(all_a)
+        params_b = np.sum(all_b, 0) / np.sum(all_b)
+        # print distribution of z for each x and current parameter estimate
 
-        break
+        prob_a = sum(probs_a) / (sum(probs_a) + sum(probs_b))
+        prob_b = sum(probs_b) / (sum(probs_a) + sum(probs_b))
 
-        # params_a = np.sum(all_a, 0) / np.sum(all_a)
-        # params_b = np.sum(all_b, 0) / np.sum(all_b)
+        if np.abs(ll_new - ll_old) < threshold:
+
+            break
+
+        ll_old = ll_new
 
     return prob_a, prob_b, params_a, params_b
 
@@ -119,11 +110,6 @@ def output(first_params, second_params, dice_params):
     # fourth line is probs for second die
     fourth_line = "B:  " + dice_q[1] + "   " + " ".join(sec_p)
 
-    print(first_line)
-    print(second_line)
-    print(third_line)
-    print(fourth_line)
-
     out = first_line + "\n" + second_line + "\n" + third_line + "\n" + \
           fourth_line
 
@@ -146,11 +132,3 @@ def main():
 if __name__ == "__main__":
 
     main()
-
-def temp(filename):
-
-    data = parse_file(filename)
-
-    prob_a, prob_b, params_a, params_b = em(data)
-
-    output(params_a, params_b, [prob_a, prob_b])
