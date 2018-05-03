@@ -116,7 +116,7 @@ def viterbi(data, prob_a, prob_b, a_probs, b_probs):
     return path[::-1]
 
 
-def output(path):
+def output(path, output_file):
 
     lines = []
     states = {"A": 0, "B": 0}
@@ -140,7 +140,9 @@ def output(path):
 
     states[path[i-1]] += 1
 
-    text_file = open("problem_2_output.txt", "w")
+    file_name = "problem_2_output_" + str(output_file) + ".txt"
+
+    text_file = open(file_name, "w")
 
     first_line = "State A: {}, State B: {}\n".format(states["A"], states["B"])
 
@@ -163,7 +165,9 @@ def main():
 
     path = viterbi(data, a_prob, b_prop, all_a, all_b)
 
-    output(path)
+    new_file = file.replace("/", "_").replace(".", "_").strip()
+
+    output(path, new_file)
 
 
 if __name__ == "__main__":
