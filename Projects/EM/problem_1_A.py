@@ -120,6 +120,8 @@ def main():
     file = sys.argv[1]
 
     rolls_a, rolls_b, die_counts = parse_file(filename = file)
+    
+    print(rolls_a, rolls_b, die_counts)
 
     first_params, second_params, dice_params = mle(rolls_a, rolls_b,
                                                    die_counts)
