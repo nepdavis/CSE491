@@ -2,13 +2,6 @@ import sys
 import time
 
 
-def suffix_array_creation(text):
-
-    arr = sorted([(text[i:], i) for i in range(len(text))])
-
-    return [i[1] for i in arr]
-
-
 class BWT:
 
     def __init__(self, text, pattern, suffix_array):
@@ -23,9 +16,29 @@ class BWT:
 
     def run(self):
 
+        """
+        Main class run
+        :return: Returns string for printing of matches and match locs
+        """
+
         self.bwt()
 
+        bwt_output = "BWT: " + " ".join([str(i) for i in self.last[:5]]) + \
+                     " ... " + " ".join([str(i) for i in self.last[-5:]]) \
+                     + "\n"
+
+        print(bwt_output)
+
         start_pos, end_pos = self.backward_search()
+
+        occ_output = "OCC: " + \
+                     " ".join([str(self.occ("$", i)) for i in range(1, 6)]) +\
+                     " ... " +\
+                     " ".join([str(self.occ("T", i)) for i in range(-4, 0)] +
+                              [str(self.occ("T", None))]) \
+                     + "\n"
+
+        print(occ_output)
 
         if start_pos is None:
 
@@ -41,32 +54,34 @@ class BWT:
 
     def occ(self, char, q):
 
+        """
+        OCC structure for backward search
+        :param char: character
+        :param q: index for prefix
+        :return: number of matches
+        """
+
         return sum([char == i for i in self.last[:q]])
 
     def backward_search(self):
 
+        """
+        Backward search for bwt
+        :return: Start and end indices
+        """
+
         big_c = {c: sum([i < c for i in self.last]) for c in ["A", "C", "G",
                                                               "T", "$"]}
-        print(self.last)
-        print(big_c)
+
+        print("C:", big_c, "\n")
 
         i = len(self.p) - 1
 
         c = self.p[-1]
 
-        #start = big_c[c] - 1
         start = big_c[c] + self.occ(c, 0) + 1
-        #start = 0
-        #end = len(self.suffix_array) - 1
-
-        print(c)
-        print(sorted(big_c.keys()))
-        print(sorted(big_c.keys()).index(c) + 1)
 
         end = big_c[c] + self.occ(c, len(self.suffix_array))
-        #end = big_c[sorted(big_c.keys())[(sorted(big_c.keys()).index(c) + 1)]] - 1
-
-        print(start, end)
 
         while (start <= end) and (i >= 1):
 
@@ -80,13 +95,10 @@ class BWT:
 
         if end < start:
 
-            print(self.suffix_array)
             return None, None
 
         else:
 
-            print(self.suffix_array)
-            print(start, end)
             return start - 1, end - 1
 
     def bwt(self):
@@ -119,8 +131,9 @@ def main():
     # Opens the text file and pattern file (text file comes first)
     pattern = (open(files[0]).readline()).strip()
     text = (open(files[1]).readline()).strip()
+    suffix_array_file = (open(files[2]))
 
-    suffix_array = suffix_array_creation(text)
+    suffix_array = [int(i) for i in suffix_array_file.readline().split()]
 
     start_time = time.time()
 

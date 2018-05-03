@@ -1,4 +1,5 @@
 import sys
+import numpy as np
 
 
 def parse_file(filename):
@@ -21,14 +22,68 @@ def em(data):
     prob_a = .5
     prob_b = .5
 
-    params_a = [1/6] * 6
-    params_b = [1/6] * 6
+    # params_a = np.random.dirichlet(np.ones(6), size=1)[0]
+    # params_b = np.random.dirichlet(np.ones(6), size=1)[0]
+
+    params_a = list(np.random.uniform(size = 6))
+    params_b = list(np.random.uniform(size = 6))
 
     max_iter = 30
 
     for i in range(max_iter):
 
+        # all_a = []
+        # all_b = []
+
+        for series in data:
+
+            counts = np.array([series.count(i) for i in range(1, 7)])
+
+            # print(counts)
+            #
+            # log_lik_a = sum([np.log(params_a[i - 1]) for i in series])
+            # log_lik_b = sum([np.log(params_b[i - 1]) for i in series])
+            #
+            # print(log_lik_a)
+            # print(log_lik_b)
+            #
+            # combined = np.exp(log_lik_a) + np.exp(log_lik_b)
+            #
+            # prob_a = np.exp(log_lik_a) / combined
+            # prob_b = np.exp(log_lik_b) / combined
+            #
+            # print(combined)
+            # print(prob_a)
+            # print(prob_b)
+            #
+            # temp_params_a = [sum([np.log(params_a[i])] * counts[i]) for i in range(6)]
+            # temp_params_b = [sum([np.log(params_b[i])] * counts[i]) for i in range(6)]
+            #
+            # params_a = np.array(np.exp(temp_params_a)) / prob_a
+            # params_b = np.array(np.exp(temp_params_b)) / prob_b
+
+            lik_a = sum([params_a[i - 1] for i in series])
+            lik_b = sum([params_b[i - 1] for i in series])
+
+            combined = lik_a + lik_b
+
+            print(lik_a, lik_b, combined)
+
+            prob_a = lik_a / combined
+            prob_b = lik_b / combined
+
+            temp_params_a = [sum([params_a[i]] * counts[i]) for i in
+                             range(6)]
+
+            temp_params_b = [sum([params_b[i]] * counts[i]) for i in range(6)]
+
+            params_a = np.array(temp_params_a) / lik_a
+            params_b = np.array(temp_params_b) / lik_b
+
         break
+
+        # params_a = np.sum(all_a, 0) / np.sum(all_a)
+        # params_b = np.sum(all_b, 0) / np.sum(all_b)
 
     return prob_a, prob_b, params_a, params_b
 
@@ -42,6 +97,8 @@ def output(first_params, second_params, dice_params):
     :param dice_params: probs for each die
     :return: None (prints to screen)
     """
+
+    text_file = open("problem_1_C_output.txt", "w")
 
     # formats each container as list of strings. [1:] gets rid of leading zero
     first_p = ["{:.4f}".format(i)[1:] for i in first_params]
@@ -67,6 +124,13 @@ def output(first_params, second_params, dice_params):
     print(third_line)
     print(fourth_line)
 
+    out = first_line + "\n" + second_line + "\n" + third_line + "\n" + \
+          fourth_line
+
+    text_file.write(out)
+
+    text_file.close()
+
 
 def main():
 
@@ -82,3 +146,11 @@ def main():
 if __name__ == "__main__":
 
     main()
+
+def temp(filename):
+
+    data = parse_file(filename)
+
+    prob_a, prob_b, params_a, params_b = em(data)
+
+    output(params_a, params_b, [prob_a, prob_b])

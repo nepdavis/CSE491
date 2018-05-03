@@ -20,18 +20,32 @@ class GlobalAlignment:
 
     def s(self, a, b):
 
-        return 0
+        if a == b:
+
+            return self.match
+
+        return self.mismatch
 
     def fill_table(self):
 
-        for i in range(self.n):
+        for i in range(self.n + 1):
 
-            for j in range(self.m):
+            self.f[i][0] = i * self.d
+
+        for j in range(self.m + 1):
+
+            self.f[0][j] = j * self.d
+
+        for i in range(1, self.m + 1):
+
+            for j in range(1, self.n + 1):
 
                 self.f[i][j] = max(self.f[i - 1][j - 1] +
-                                   self.s(self.x[i], self.y[j]),
+                                   self.s(self.x[i - 1], self.y[j - 1]),
                                    self.f[i - 1][j] + self.d,
                                    self.f[i][j - 1] + self.d)
+
+        return self.f
 
 
 def main():

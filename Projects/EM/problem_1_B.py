@@ -60,11 +60,23 @@ def bayes(filename, params_a, params_b):
 
 def output(results):
 
+    text_file = open("problem_1_B_output.txt", "w")
+
+    out = ""
+
     for i, line in enumerate(results):
 
-        print("Sample {}: {}, posterior probability of {:.4f}".format(i + 1,
+        string = "Sample {}: {}, posterior probability of {:.4f}".format(i + 1,
                                                                       line[0],
-                                                                      line[1]))
+                                                                      line[1])
+
+        print(string)
+
+        out += (string + "\n")
+
+    text_file.write(out)
+
+    text_file.close()
 
 
 def main():

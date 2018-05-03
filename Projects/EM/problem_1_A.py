@@ -76,6 +76,8 @@ def output(first_params, second_params, dice_params):
     :return: None (prints to screen)
     """
 
+    text_file = open("problem_1_A_output.txt", "w")
+
     # formats each container as list of strings. [1:] gets rid of leading zero
     first_p = ["{:.4f}".format(i)[1:] for i in first_params]
     sec_p = ["{:.4f}".format(i)[1:] for i in second_params]
@@ -99,6 +101,13 @@ def output(first_params, second_params, dice_params):
     print(second_line)
     print(third_line)
     print(fourth_line)
+
+    out = first_line + "\n" + second_line + "\n" + third_line + "\n" +\
+          fourth_line
+
+    text_file.write(out)
+
+    text_file.close()
 
 
 def main():

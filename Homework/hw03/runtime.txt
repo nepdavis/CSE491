@@ -1,1 +1,1 @@
-The running time of this program was 0.002758
+The runtime of this program was 0.620753 seconds
