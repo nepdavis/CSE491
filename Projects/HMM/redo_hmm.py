@@ -58,11 +58,11 @@ def read_params(filename):
 
 def viterbi(data, prob_a, prob_b, a_probs, b_probs):
 
-    a_probs = {k: np.log2(v) for k, v in a_probs.items()}
-    b_probs = {k: np.log2(v) for k, v in b_probs.items()}
+    a_probs = {k: np.log(v) for k, v in a_probs.items()}
+    b_probs = {k: np.log(v) for k, v in b_probs.items()}
 
-    viterbi_a = [np.log2(prob_a) + a_probs[data[0]]]
-    viterbi_b = [np.log2(prob_b) + b_probs[data[0]]]
+    viterbi_a = [np.log(prob_a) + a_probs[data[0]]]
+    viterbi_b = [np.log(prob_b) + b_probs[data[0]]]
 
     path_states = np.zeros((2, len(data)), dtype = "int")
 
