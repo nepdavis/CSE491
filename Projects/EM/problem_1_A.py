@@ -54,6 +54,10 @@ def mle(first_rolls, second_rolls, dice_rolls):
 
     for roll in range(1, 7):
 
+        print(first_rolls.count(roll), len(first_rolls))
+
+        break
+
         first_probs.append(first_rolls.count(roll) / len(first_rolls))
 
         second_probs.append(second_rolls.count(roll) / len(second_rolls))
@@ -62,8 +66,6 @@ def mle(first_rolls, second_rolls, dice_rolls):
 
         dice_probs.append(count / sum(dice_rolls.values()))
         
-    print(first_probs, second_probs, dice_probs)
-
     return first_probs, second_probs, dice_probs
 
 
