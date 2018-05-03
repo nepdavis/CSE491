@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3d6629d-312e-48ab-8d66-a300e0eb0aeb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Projects/EM/problem_1_A.py" afterPath="$PROJECT_DIR$/Projects/EM/problem_1_A.py" />
       <change beforePath="$PROJECT_DIR$/Projects/EM/problem_1_B.py" afterPath="$PROJECT_DIR$/Projects/EM/problem_1_B.py" />
       <change beforePath="$PROJECT_DIR$/Projects/EM/problem_1_C.py" afterPath="$PROJECT_DIR$/Projects/EM/problem_1_C.py" />
     </list>
@@ -20,18 +19,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="hmm_viterbi.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Projects/HMM/hmm_viterbi.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1185">
-              <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="redo_hmm.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Projects/HMM/redo_hmm.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -44,21 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="problem_1_C_output.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Projects/EM/problem_1_C_output.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="problem_1_C.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="problem_1_C.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Projects/EM/problem_1_C.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1755">
-              <caret line="117" column="10" lean-forward="true" selection-start-line="117" selection-start-column="10" selection-end-line="117" selection-end-column="10" />
+            <state relative-caret-position="1545">
+              <caret line="103" column="35" lean-forward="false" selection-start-line="103" selection-start-column="35" selection-end-line="103" selection-end-column="35" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -88,31 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="counts1.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Projects/EM/data/counts1.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="problem_1_A_output.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Projects/EM/problem_1_A_output.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="problem_1_B.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="problem_1_B.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Projects/EM/problem_1_B.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1170">
-              <caret line="78" column="24" lean-forward="true" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
+            <state relative-caret-position="1350">
+              <caret line="90" column="17" lean-forward="false" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -164,8 +121,8 @@
         <option value="$PROJECT_DIR$/Projects/HMM/redo_hmm.py" />
         <option value="$PROJECT_DIR$/Projects/EM/sandbox.py" />
         <option value="$PROJECT_DIR$/Projects/EM/problem_1_A.py" />
-        <option value="$PROJECT_DIR$/Projects/EM/problem_1_C.py" />
         <option value="$PROJECT_DIR$/Projects/EM/problem_1_B.py" />
+        <option value="$PROJECT_DIR$/Projects/EM/problem_1_C.py" />
       </list>
     </option>
   </component>
@@ -845,7 +802,7 @@
         <state relative-caret-position="1185">
           <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -894,14 +851,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Projects/EM/problem_1_A.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="108" column="0" lean-forward="true" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Projects/EM/sandbox.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -912,21 +861,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Projects/EM/problem_1_C.py">
+    <entry file="file://$PROJECT_DIR$/Projects/EM/problem_1_B.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1755">
-          <caret line="117" column="10" lean-forward="true" selection-start-line="117" selection-start-column="10" selection-end-line="117" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1350">
+          <caret line="90" column="17" lean-forward="false" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Projects/EM/problem_1_B.py">
+    <entry file="file://$PROJECT_DIR$/Projects/EM/problem_1_A.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="78" column="24" lean-forward="true" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
+        <state relative-caret-position="1620">
+          <caret line="108" column="0" lean-forward="true" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projects/EM/problem_1_C.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1545">
+          <caret line="103" column="35" lean-forward="false" selection-start-line="103" selection-start-column="35" selection-end-line="103" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

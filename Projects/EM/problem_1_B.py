@@ -3,6 +3,12 @@ import sys
 
 def parse_params(filename):
 
+    """
+    Function to parse parameter file
+    :param filename: Parameter filename
+    :return: parameter values
+    """
+
     all_dicts = []
 
     with open(filename) as f:
@@ -24,6 +30,13 @@ def parse_params(filename):
 
 def probability(series, params):
 
+    """
+    Helper function to compute probabilities
+    :param series: series of values
+    :param params: parameter dictionary
+    :return: probability
+    """
+
     prob = 1
 
     for result in series:
@@ -34,6 +47,14 @@ def probability(series, params):
 
 
 def bayes(filename, params_a, params_b):
+
+    """
+    Function to compute optimal probability for a given die using Bayes rule
+    :param filename: data filename
+    :param params_a: a parameters
+    :param params_b: b parameters
+    :return: lines to print out to a file with posterior probabilities
+    """
 
     roll_results = []
 
@@ -63,6 +84,12 @@ def bayes(filename, params_a, params_b):
 
 
 def output(results):
+
+    """
+    Function to write results to a file
+    :param results: lines of posterior probabilities
+    :return: none
+    """
 
     text_file = open("problem_1_B_output.txt", "w")
 

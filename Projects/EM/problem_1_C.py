@@ -4,6 +4,12 @@ import numpy as np
 
 def parse_file(filename):
 
+    """
+    Function to parse data
+    :param filename: data filename
+    :return: data as a list of lines
+    """
+
     all_series = []
 
     with open(filename) as f:
@@ -21,60 +27,82 @@ def parse_file(filename):
 
 def em(data):
 
+    """
+    EM algorithm to determine optimal parameters
+    :param data: data to perform EM on
+    :return: parameters
+    """
+
+    # starting equal probabilities
     prob_a = .5
     prob_b = .5
 
+    # generate random parameters
     params_a = list(np.random.uniform(size = 6))
     params_b = list(np.random.uniform(size = 6))
 
+    # set max iteration to 30, threshold to .01, and null loglik to 0
     max_iter = 30
     threshold = 0.01
-    ll_old = 0
+    loglik_0 = 0
 
+    # for i in max iterations
     for i in range(max_iter):
 
+        # create empty lists to hold parameters
         all_a = []
         all_b = []
 
         probs_a = []
         probs_b = []
 
-        ll_new = 0
+        # new log likelihood of iteration
+        loglik_i = 0
 
+        # for line in data
         for line in data:
 
+            # get counts of rolls
             counts = np.array([line.count(i) for i in range(1, 7)])
 
-            ll_A = np.sum([counts * np.log(params_a)])
-            ll_B = np.sum([counts * np.log(params_b)])
+            # generate sums
+            loglik_a = np.sum([counts * np.log(params_a)])
+            loglik_b = np.sum([counts * np.log(params_b)])
 
-            denom = np.exp(ll_A) + np.exp(ll_B)
-            w_A = np.exp(ll_A) / denom
-            w_B = np.exp(ll_B) / denom
+            # create denominator
+            total = np.exp(loglik_a) + np.exp(loglik_b)
 
-            probs_a.append(w_A)
-            probs_b.append(w_B)
+            # get new parameters
+            new_prob_a = np.exp(loglik_a) / total
+            new_prob_b = np.exp(loglik_b) / total
 
-            all_a.append(np.dot(w_A, counts))
-            all_b.append(np.dot(w_B, counts))
+            # keep track of parameters
+            probs_a.append(new_prob_a)
+            probs_b.append(new_prob_b)
+
+            # keep track of dot products between parameters and counts
+            all_a.append(np.dot(new_prob_a, counts))
+            all_b.append(np.dot(new_prob_b, counts))
 
             # update complete log likelihood
-            ll_new += w_A * ll_A + w_B * ll_B
+            loglik_i += new_prob_a * loglik_a + new_prob_b * loglik_b
 
-        # M-step: update values for parameters given current distribution
-        # [EQN 2]
+        # using all of the sums, get new parameters by seeing proportions
         params_a = np.sum(all_a, 0) / np.sum(all_a)
         params_b = np.sum(all_b, 0) / np.sum(all_b)
-        # print distribution of z for each x and current parameter estimate
 
+        # new probs for each die is the expected value
         prob_a = sum(probs_a) / (sum(probs_a) + sum(probs_b))
         prob_b = sum(probs_b) / (sum(probs_a) + sum(probs_b))
 
-        if np.abs(ll_new - ll_old) < threshold:
+        # if the difference is less than our threshold
+        if np.abs(loglik_i - loglik_0) < threshold:
 
+            # end the algorith, we've converged
             break
 
-        ll_old = ll_new
+        # update old log likelihood
+        loglik_0 = loglik_i
 
     return prob_a, prob_b, params_a, params_b
 
