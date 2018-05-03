@@ -68,8 +68,6 @@ def viterbi(data, prob_a, prob_b, a_probs, b_probs):
 
     path_states[1, 0] = 1
 
-    print("starting viterbi")
-
     for i in range(1, len(data)):
 
         # a = a_probs[data[i]] + max(viterbi_a[i-1] + a_probs["AA"],
@@ -101,24 +99,11 @@ def viterbi(data, prob_a, prob_b, a_probs, b_probs):
         viterbi_a.append(a)
         viterbi_b.append(b)
 
-    print("ending viterbi")
-
-    pass
-
     max_index = 0 if viterbi_a[-1] > viterbi_b[-1] else 1
 
-    #path = [path_states[max_index, path_states.shape[1] - 1]]
     path = [max_index]
 
     i = path[0]
-
-    print(path_states[:, 718:723])
-    print(viterbi_a[718:723])
-    print(viterbi_b[718:723])
-    print("\n")
-    print(path_states[:, 768:773])
-    print(viterbi_a[768:773])
-    print(viterbi_b[768:773])
 
     for j in range(len(data)-2, -1, -1):
 
@@ -127,10 +112,6 @@ def viterbi(data, prob_a, prob_b, a_probs, b_probs):
         path.append(i)
 
     path = ["A" if i == 0 else "B" for i in path]
-
-    print(path[::-1][718:723])
-
-    print(len(path))
 
     return path[::-1]
 
