@@ -58,7 +58,7 @@ def mle(first_rolls, second_rolls, dice_rolls):
 
         print(len(first_rolls))
 
-        first_value = first_rolls.count(roll) // len(first_rolls)
+        first_value = float(first_rolls.count(roll)) / len(first_rolls)
 
         first_probs.append(first_value)
 
