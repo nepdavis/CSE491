@@ -34,6 +34,8 @@ def parse_file(filename):
 
                 rolls_dice_b.extend([int(i) for i in temp_rolls])
 
+    f.close()
+
     return rolls_dice_a, rolls_dice_b, dice_dict_count
 
 

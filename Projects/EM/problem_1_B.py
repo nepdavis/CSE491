@@ -17,6 +17,8 @@ def parse_params(filename):
 
             all_dicts.append(temp_dict)
 
+    f.close()
+
     return all_dicts
 
 
@@ -54,6 +56,8 @@ def bayes(filename, params_a, params_b):
             else:
 
                 roll_results.append(("B", prob_b))
+
+    f.close()
 
     return roll_results
 

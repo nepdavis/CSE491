@@ -14,6 +14,8 @@ def parse_file(filename):
 
             all_series.append(line)
 
+    f.close()
+
     return all_series
 
 
