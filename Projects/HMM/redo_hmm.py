@@ -68,22 +68,42 @@ def viterbi(data, prob_a, prob_b, a_probs, b_probs):
 
     path_states[1, 0] = 1
 
+    print("starting viterbi")
+
     for i in range(1, len(data)):
 
-        a = a_probs[data[i]] + max(viterbi_a[i-1] + a_probs["AA"],
-                                   viterbi_b[i-1] + b_probs["BA"])
+        # a = a_probs[data[i]] + max(viterbi_a[i-1] + a_probs["AA"],
+        #                            viterbi_b[i-1] + b_probs["BA"])
+        #
+        # path_states[0, i] = np.argmax(np.array([viterbi_a[i-1] + a_probs["AA"],
+        #                                viterbi_b[i-1] + b_probs["BA"]]))
+        #
+        # b = b_probs[data[i]] + max(viterbi_a[i-1] + a_probs["AB"],
+        #                            viterbi_b[i-1] + b_probs["BB"])
+        #
+        # path_states[1, i] = np.argmax([viterbi_a[i-1] + a_probs["AB"],
+        #                                viterbi_b[i-1] + b_probs["BB"]])
 
-        path_states[0, i] = np.argmax([viterbi_a[i-1] + a_probs["AA"],
-                                       viterbi_b[i-1] + b_probs["BA"]])
+        a_options = [viterbi_a[i-1] + a_probs["AA"],
+                     viterbi_b[i-1] + b_probs["BA"]]
 
-        b = b_probs[data[i]] + max(viterbi_a[i-1] + a_probs["AB"],
-                                   viterbi_b[i-1] + b_probs["BB"])
+        a = a_probs[data[i]] + max(a_options)
 
-        path_states[1, i] = np.argmax([viterbi_a[i-1] + a_probs["AB"],
-                                       viterbi_b[i-1] + b_probs["BB"]])
+        path_states[0, i] = a_options.index(max(a_options))
+
+        b_options = [viterbi_a[i-1] + a_probs["AB"],
+                     viterbi_b[i-1] + b_probs["BB"]]
+
+        b = b_probs[data[i]] + max(b_options)
+
+        path_states[1, i] = b_options.index(max(b_options))
 
         viterbi_a.append(a)
         viterbi_b.append(b)
+
+    print("ending viterbi")
+
+    pass
 
     max_index = 0 if viterbi_a[-1] > viterbi_b[-1] else 1
 
