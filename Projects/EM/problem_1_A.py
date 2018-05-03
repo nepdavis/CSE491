@@ -40,7 +40,6 @@ def parse_file(filename):
 def mle(first_rolls, second_rolls, dice_rolls):
 
     """
-
     :param first_rolls: list of rolls for first dice
     :param second_rolls: list of rolls for second dice
     :param dice_rolls: dict of each die and its count
@@ -54,6 +53,8 @@ def mle(first_rolls, second_rolls, dice_rolls):
     dice_probs = []
 
     for roll in range(1, 7):
+        
+        print(roll)
 
         first_probs.append(first_rolls.count(roll) / len(first_rolls))
 
@@ -120,8 +121,6 @@ def main():
     file = sys.argv[1]
 
     rolls_a, rolls_b, die_counts = parse_file(filename = file)
-    
-    print(rolls_a, rolls_b, die_counts)
 
     first_params, second_params, dice_params = mle(rolls_a, rolls_b,
                                                    die_counts)
