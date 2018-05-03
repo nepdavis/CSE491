@@ -20,7 +20,7 @@ def parse_file(filename):
 
         for line in f:
 
-            temp_die, temp_rolls = line.strip().split(" ")
+            temp_die, temp_rolls = line.strip().split()
 
             if temp_die == "A":
 
