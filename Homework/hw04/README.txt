@@ -1,3 +1,5 @@
+This is for efficient overlap alignment -- Needleman-Wunch and the Hirschberg algorithms
+
 This program should be run with Python 3.xx -- dependencies are on sys and time modules.
 
 
