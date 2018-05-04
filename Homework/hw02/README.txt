@@ -1,3 +1,5 @@
+This program implements suffix array algorithm for strings -- meant for DNA sequences (uses my own implementations of quick sort and binary search).
+
 This program should be run with Python 3.xx -- dependencies are on sys and time modules.
 
 
