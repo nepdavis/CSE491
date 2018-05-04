@@ -1,3 +1,5 @@
+This program implements the Burrows-Wheeler transform algorithm
+
 This program should be run with Python 3.xx -- dependencies are on sys and time modules.
 It does not compute the suffix array, and the suffix array of T must be inputted. 
 
